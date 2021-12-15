@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @var int $currentPage
  */
 
-use App\Widget\OffsetPagination;
+use App\Presentation\Infrastructure\Web\Widget\OffsetPagination;
 use Yiisoft\Html\Html;
 use Yiisoft\Yii\DataView\GridView;
 

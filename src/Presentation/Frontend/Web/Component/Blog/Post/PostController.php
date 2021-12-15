@@ -57,7 +57,7 @@ final class PostController
                 return $this->webService->getRedirectResponse('blog/index');
             }
 
-            $parameters['errors'] = $form->getFirstErrors();
+            $parameters['errors'] = $form->getFormErrors()->getFirstErrors();
         }
 
         return $this->viewRenderer->render('__form', $parameters);
@@ -97,7 +97,7 @@ final class PostController
             }
 
             $parameters['body'] = $body;
-            $parameters['errors'] = $form->getFirstErrors();
+            $parameters['errors'] = $form->getFormErrors()->getFirstErrors();
         }
 
         return $this->viewRenderer->render('__form', $parameters);

@@ -11,7 +11,7 @@ use Yiisoft\Html\Tag\Form;
  * @var \Yiisoft\Translator\TranslatorInterface $translator
  * @var \Yiisoft\Router\UrlGeneratorInterface $urlGenerator
  * @var string $csrf
- * @var \App\Auth\Form\LoginForm $formModel
+ * @var \Yiisoft\Form\FormModelInterface $formModel
  */
 
 $this->setTitle($translator->translate('layout.login'));

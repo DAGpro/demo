@@ -5,14 +5,13 @@ declare(strict_types=1);
 /**
  * @var \Yiisoft\Data\Paginator\OffsetPaginator $paginator;
  * @var \Yiisoft\Router\UrlGeneratorInterface $url
- * @var \Yiisoft\Form\Field $field
  * @var \Yiisoft\Translator\Translator $translator
  * @var string $csrf
  * @var \Yiisoft\View\WebView $this
  */
 
 use App\Blog\Domain\Tag;
-use App\Presentation\Infrastructure\Web\Widget\OffsetPagination;
+use App\Infrastructure\Presentation\Web\Widget\OffsetPagination;
 use Yiisoft\Html\Html;
 
 $this->setTitle($translator->translate('backend.title.tags'));

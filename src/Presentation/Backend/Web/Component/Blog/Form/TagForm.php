@@ -41,12 +41,12 @@ final class TagForm extends FormModel
     {
         return [
             'id' => [
-                Required::rule(),
-                Number::rule(),
+                new Required(),
+                new Number(),
             ],
             'label' => [
-                Required::rule(),
-                HasLength::rule()->min(3)->max(191),
+                new Required(),
+                new HasLength(3, 191),
             ],
         ];
     }

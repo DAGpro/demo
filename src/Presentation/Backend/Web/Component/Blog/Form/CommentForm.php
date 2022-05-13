@@ -57,14 +57,14 @@ final class CommentForm extends FormModel
     {
         return [
             'content' => [
-                Required::rule(),
+                new Required(),
             ],
             'comment_id' => [
-                Required::rule(),
-                Number::rule(),
+                new Required(),
+                new Number(),
             ],
             'public' => [
-                Boolean::rule(),
+                new Boolean(),
             ]
         ];
     }

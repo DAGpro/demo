@@ -48,19 +48,17 @@ final class PostForm extends FormModel
 
     public function getRules(): array
     {
-        $rules = new RuleSet();
-        $rules->add(HasLength::rule()->min(3));
         return [
             'title' => [
-                Required::rule(),
-                HasLength::rule()->min(4)->max(191),
+                new Required(),
+                new HasLength(4, 191),
             ],
             'content' => [
-                Required::rule(),
-                HasLength::rule()->min(4),
+                new Required(),
+                new HasLength(4),
             ],
             'tags' => [
-                Each::rule($rules),
+                new Each([new Required()]),
             ],
         ];
     }

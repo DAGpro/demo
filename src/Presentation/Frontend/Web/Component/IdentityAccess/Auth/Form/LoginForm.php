@@ -55,7 +55,7 @@ final class LoginForm extends FormModel
     public function getRules(): array
     {
         return [
-            'login' => [Required::rule()],
+            'login' => [new Required()],
             'password' => $this->passwordRules(),
         ];
     }
@@ -63,7 +63,7 @@ final class LoginForm extends FormModel
     private function passwordRules(): array
     {
         return [
-            Required::rule(),
+            new Required(),
             function (): Result {
                 $result = new Result();
 

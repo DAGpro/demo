@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 /**
  * @var \App\IdentityAccess\User\Domain\User $item
- * @var \Yiisoft\Form\Widget\Field $field
  * @var \Yiisoft\Translator\Translator $translator
  * @var \Yiisoft\Router\UrlGeneratorInterface $url
  * @var \Yiisoft\View\WebView $this

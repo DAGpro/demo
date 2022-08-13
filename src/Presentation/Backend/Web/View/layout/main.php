@@ -5,8 +5,8 @@ declare(strict_types=1);
 use App\Presentation\Infrastructure\Web\Asset\AppAsset;
 use App\Presentation\Infrastructure\Web\Widget\FlashMessage;
 use App\Presentation\Infrastructure\Web\Widget\PerformanceMetrics;
-use Yiisoft\Form\Widget\Field;
-use Yiisoft\Form\Widget\Form;
+use Yiisoft\Form\Field;
+use Yiisoft\Html\Tag\Form;
 use Yiisoft\Html\Html;
 use Yiisoft\Strings\StringHelper;
 use Yiisoft\Yii\Bootstrap5\Nav;
@@ -121,17 +121,20 @@ $this->beginPage();
                                     'label' => $translator->translate('layout.language.russian'),
                                     'url' => $url->generate($currentRouteName, array_merge($currentRoute->getArguments(), ['_language' => 'ru'])),
                                 ],
+                                [
+                                    'label' => $translator->translate('layout.language.indonesian'),
+                                    'url' => $url->generateFromCurrent(['_language' => 'id'], 'site/index'),
+                                ],
                             ]
                         ],
-                        Form::widget()
-                            ->action($url->generate('auth/logout'))
+                        Form::tag()
+                            ->post($url->generate('auth/logout'))
                             ->csrf($csrf)
-                            ->begin()
-                        . Field::widget()
+                            ->open()
+                        . Field::submitButton($translator->translate('menu.logout', ['login' => Html::encode($user->getLogin())]))
+                            ->buttonClass('btn btn-primary')
                             ->containerClass('mb-1')
-                            ->submitButton([], ['class' => 'btn btn-primary'])
-                            ->value($translator->translate('menu.logout', ['login' => Html::encode($user->getLogin())]))
-                        . Form::end()
+                        . Form::tag()->close()
                     ],
             ) ?>
         <?= NavBar::end() ?>

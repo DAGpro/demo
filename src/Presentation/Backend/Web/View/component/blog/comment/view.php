@@ -6,7 +6,6 @@ declare(strict_types=1);
  * @var \App\Blog\Domain\Comment $comment
  * @var \Yiisoft\View\WebView $this
  * @var \Yiisoft\Router\UrlGeneratorInterface $url
- * @var \Yiisoft\Form\Widget\Field $field
  * @var \Yiisoft\Translator\Translator $translator
  * @var string $title
  * @var string $csrf

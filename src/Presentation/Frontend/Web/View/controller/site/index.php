@@ -46,7 +46,7 @@ echo Carousel::widget()
                 <button class="nav-link" id="nav-other-tab" data-bs-toggle="tab" data-bs-target="#nav-other" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><?= $translator->translate('view-site.other') ?></button>
             </div>
         </nav>
-        <div class="tab-content border border-1 border-top-0 card-body" id="nav-tabContent">
+        <div class="tab-content border border-1 border-top-0 p-3" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <h4 class="card-title text-muted mt-2 mb-1"><?= $translator->translate('view-site.add.demo.access.rights') ?></h4>
                 <div>
@@ -55,6 +55,11 @@ echo Carousel::widget()
                 <h4 class="card-title text-muted mt-2 mb-1"><?= $translator->translate('view-site.add.random.content') ?></h4>
                 <div>
                     <code><?= "{$binPath} fixture/add [count = 10]" ?></code>
+                </div>
+                <h4 class="card-title text-muted mt-2 mb-1"><?= $translator->translate('view-site.create.and.delete.user') ?></h4>
+                <div>
+                    <code><?= "{$binPath} user/create &lt;login&gt; &lt;password&gt; [isAdmin = 0]" ?></code>
+                    <br><code><?= "{$binPath} user/delete &lt;login&gt;" ?></code>
                 </div>
                 <h4 class="card-title text-muted mt-2 mb-1"><?= $translator->translate('view-site.add.admin.backend') ?></h4>
                 <div>

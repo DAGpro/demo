@@ -15,8 +15,8 @@ declare(strict_types=1);
  * @var array $error
  */
 
-use Yiisoft\Form\Widget\Field;
-use Yiisoft\Form\Widget\Form;
+use Yiisoft\Form\Field;
+use Yiisoft\Html\Tag\Form;
 
 $this->setTitle($title);
 
@@ -24,21 +24,18 @@ $this->setTitle($title);
     <div class="main row">
         <div class="col-md-5">
             <h3> <?=$translator->translate('blog.tag.change') . $form->getLabel()?></h3>
-            <?= Form::widget()
-                ->action($url->generate(...$action))
-                ->method('post')
-                ->attributes(['enctype' => 'multipart/form-data'])
+            <?= Form::tag()
+                ->post($url->generate(...$action))
+                ->addAttributes(['enctype' => 'multipart/form-data'])
                 ->csrf($csrf)
                 ->id('form-moderate-tag')
-                ->begin() ?>
+                ->open() ?>
 
-            <?= Field::widget()->text($form, 'label') ?>
-            <?= Field::widget()->text($form, 'id')->attributes(['disabled' => 'disabled']) ?>
+            <?= Field::text($form, 'label') ?>
+            <?= Field::text($form, 'id')->addInputAttributes(['disabled' => 'disabled']) ?>
 
-            <?= Field::widget()
-                ->submitButton()
-                ->value($translator->translate('button.submit'))
-                ->attributes(
+            <?= Field::submitButton($translator->translate('button.submit'))
+                ->addButtonAttributes(
                     [
                         'class' => 'btn btn-primary btn-lg mt-3',
                         'id' => 'login-button'
@@ -46,7 +43,7 @@ $this->setTitle($title);
                 )
             ?>
 
-            <?= Form::end()?>
+            <?= Form::tag()->close()?>
         </div>
     </div>
 <?php

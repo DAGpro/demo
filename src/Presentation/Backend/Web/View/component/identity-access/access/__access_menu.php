@@ -4,14 +4,14 @@ declare(strict_types=1);
 /**
  * @var \Yiisoft\View\WebView $this
  * @var \Yiisoft\Router\UrlGeneratorInterface $url
- * @var \Yiisoft\Form\Widget\Field $field
  * @var \Yiisoft\Translator\Translator $translator
  * @var string $csrf
  * @var string|null $currentUrl
  */
 
 
-function navElement(string $url, string $name){
+function navElement(string $url, string $name): string
+{
     return <<<LI
         <li class="nav-item">
             <a class="nav-link" href="{$url}">$name</a>

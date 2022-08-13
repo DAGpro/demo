@@ -5,7 +5,7 @@ declare(strict_types=1);
 /**
  * @var \Yiisoft\Data\Paginator\OffsetPaginator $paginator;
  * @var \Yiisoft\Router\UrlGeneratorInterface $url
- * @var \Yiisoft\Form\Widget\Field $field
+ * @var \Yiisoft\Form\Field $field
  * @var \Yiisoft\Translator\Translator $translator
  * @var string $csrf
  * @var \Yiisoft\View\WebView $this

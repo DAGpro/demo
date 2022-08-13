@@ -5,7 +5,6 @@ declare(strict_types=1);
 /**
  * @var \Yiisoft\View\WebView $this
  * @var \Yiisoft\Router\UrlGeneratorInterface $url
- * @var \Yiisoft\Form\Widget\Field $field
  * @var \Yiisoft\Translator\Translator $translator
  * @var \App\Blog\Domain\Post $post
  * @var \App\Presentation\Backend\Web\Component\Blog\Form\PostForm $form
@@ -14,9 +13,9 @@ declare(strict_types=1);
  * @var string $title
  */
 
-use Yiisoft\Form\Widget\Form;
+use Yiisoft\Html\Tag\Form;
 use Yiisoft\Html\Html;
-use Yiisoft\Form\Widget\Field;
+use Yiisoft\Form\Field;
 
 $this->setTitle($translator->translate('blog.moderate.post'));
 
@@ -24,19 +23,18 @@ $this->setTitle($translator->translate('blog.moderate.post'));
 <div class="main">
     <h1><?= Html::encode($this->getTitle()) ?></h1>
 
-    <?= Form::widget()
-        ->action($url->generate(...$action))
-        ->method('post')
-        ->attributes(['enctype' => 'multipart/form-data'])
+    <?= Form::tag()
+        ->post($url->generate(...$action))
+        ->addAttributes(['enctype' => 'multipart/form-data'])
         ->csrf($csrf)
         ->id('form-moderate-post')
-        ->begin() ?>
+        ->open() ?>
 
-    <?= Field::widget()->text($form, 'title') ?>
-    <?= Field::widget()->textArea($form, 'content')->attributes(['rows' => '9', 'style' => 'height: 300px;']) ?>
-    <?= Field::widget()->checkbox($form, 'public')
-        ->value(true)
-        ->attributes(['class' => 'form-check-input'])
+    <?= Field::text($form, 'title') ?>
+    <?= Field::textArea($form, 'content')->addInputAttributes(['rows' => '9', 'style' => 'height: 300px;']) ?>
+    <?= Field::checkbox($form, 'public')
+        ->inputValue(true)
+        ->addInputAttributes(['class' => 'form-check-input'])
         ->containerAttributes(['class' => 'form-check'])
     ?>
 
@@ -60,10 +58,8 @@ $this->setTitle($translator->translate('blog.moderate.post'));
         <?php endforeach; ?>
     </div>
 
-    <?= Field::widget()
-        ->submitButton()
-        ->value($translator->translate('button.submit'))
-        ->attributes(
+    <?= Field::submitButton($translator->translate('button.submit'))
+        ->addButtonAttributes(
             [
                 'class' => 'btn btn-primary btn-lg mt-3',
                 'id' => 'login-button'
@@ -71,6 +67,6 @@ $this->setTitle($translator->translate('blog.moderate.post'));
         )
     ?>
 
-    <?=Form::end()?>
+    <?=Form::tag()->close()?>
 </div>
 

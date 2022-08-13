@@ -56,12 +56,16 @@ final class PostCard extends Widget
         $return = Html::openTag('div', ['class' => 'card-text mb-auto']);
         $return .= $this->post->getPublishedAt() === null
             ? 'not published'
-            : $this->post->getPublishedAt()->format('M, d');
+            : $this->post
+                ->getPublishedAt()
+                ->format('M, d');
         $return .= ' by ';
         $return .= Html::a(
-            $this->post->getAuthor()->getName(),
+            $this->post
+                ->getAuthor()
+                ->getName(),
             $this->urlGenerator->generate('user/profile', ['login' => $this->post->getAuthor()->getName()])
-        )->class('mb-1 text-muted');
+        )->addClass('mb-1 text-muted');
 
         $return .= Html::p(
             mb_substr($this->post->getContent(), 0, 400)

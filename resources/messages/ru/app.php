@@ -4,9 +4,12 @@ return [
     'button.reset' => 'Сбросить',
     'form.title' => 'Заголовок',
     'form.content' => 'Содержимое',
+    'form.attach-files' => 'Прикрепить файлы',
     'pagination-summary' => 'Показано {pageSize} из {total} постов',
+    'layout.change-language' => 'Change language',
     'layout.language.english' => 'English',
     'layout.language.russian' => 'Русский',
+    'layout.language.indonesian' => 'Indonesia',
 
     'menu.comments-feed' => 'Лента комментариев',
     'menu.blog' => 'Блог',
@@ -119,6 +122,7 @@ return [
     'identityAccess.login' => 'Логин',
     'identityAccess.remove.user' => 'удалить пользователя',
     'identityAccess.created.at' => 'Создан ',
+    'identityAccess.list-users' => 'Список пользователей',
 
     'identityAccess.form.login' => 'Войти',
     'identityAccess.form.password' => 'Пароль',

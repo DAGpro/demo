@@ -42,7 +42,8 @@ final class LocaleMiddleware implements MiddlewareInterface
         SessionInterface $session,
         LoggerInterface $logger,
         ResponseFactoryInterface $responseFactory,
-        array $locales = []
+        array $locales = [],
+        private bool $cookieSecure = false
     ) {
         $this->translator = $translator;
         $this->urlGenerator = $urlGenerator;
@@ -74,7 +75,8 @@ final class LocaleMiddleware implements MiddlewareInterface
 
             $response = $handler->handle($request);
             if ($this->isDefaultLocale($locale, $country) && $request->getMethod() === 'GET') {
-                $response = $this->responseFactory->createResponse(Status::FOUND)
+                $response = $this->responseFactory
+                    ->createResponse(Status::FOUND)
                     ->withHeader(Header::LOCATION, $newPath);
             }
             if ($this->enableSaveLocale) {
@@ -96,7 +98,8 @@ final class LocaleMiddleware implements MiddlewareInterface
         $this->urlGenerator->setDefaultArgument($this->queryParameterName, $locale);
 
         if ($request->getMethod() === 'GET') {
-            return $this->responseFactory->createResponse(Status::FOUND)
+            return $this->responseFactory
+                ->createResponse(Status::FOUND)
                 ->withHeader(Header::LOCATION, '/' . $locale . $path);
         }
 
@@ -157,7 +160,7 @@ final class LocaleMiddleware implements MiddlewareInterface
     {
         $this->logger->info('Saving found locale to cookies');
         $this->session->set($this->sessionName, $locale);
-        $cookie = (new Cookie($this->sessionName, $locale));
+        $cookie = (new Cookie($this->sessionName, $locale, secure: $this->cookieSecure));
         if ($this->cookieDuration !== null) {
             $cookie = $cookie->withMaxAge($this->cookieDuration);
         }
@@ -214,6 +217,13 @@ final class LocaleMiddleware implements MiddlewareInterface
     {
         $new = clone $this;
         $new->enableDetectLocale = $enableDetectLocale;
+        return $new;
+    }
+
+    public function withCookieSecure(bool $secure): self
+    {
+        $new = clone $this;
+        $new->cookieSecure = $secure;
         return $new;
     }
 }

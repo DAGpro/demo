@@ -27,7 +27,7 @@ $this->setTitle($translator->translate('menu.users'));
 
     <div class="card shadow">
         <h5 class="card-header bg-primary text-white">
-            <i class="bi bi-people"></i> List users
+            <i class="bi bi-people"></i> <?= $translator->translate('identityAccess.list-users') ?>
         </h5>
         <?= GridView::widget()->columns(
             [
@@ -43,7 +43,9 @@ $this->setTitle($translator->translate('menu.users'));
                 ],
                 [
                     'header()' => ['create_at'],
-                    'value()' => [static fn ($model): string => $model->getCreatedAt()->format('r')],
+                    'value()' => [static fn ($model): string => $model
+                        ->getCreatedAt()
+                        ->format('r')],
                 ],
                 [
                     'header()' => ['api'],

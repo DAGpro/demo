@@ -9,6 +9,7 @@ use App\Presentation\Frontend\Web\Component\IdentityAccess\Auth\SignupController
 use App\Presentation\Frontend\Web\Component\IdentityAccess\User\CabinetController;
 use App\Presentation\Frontend\Web\Component\IdentityAccess\User\UserController;
 use App\Presentation\Infrastructure\Api\Middleware\ApiDataWrapper;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Yiisoft\Auth\Middleware\Authentication;
 use Yiisoft\DataResponse\DataResponseFactoryInterface;
 use Yiisoft\DataResponse\Middleware\FormatDataResponseAsJson;
@@ -16,10 +17,14 @@ use Yiisoft\DataResponse\Middleware\FormatDataResponseAsXml;
 use Yiisoft\Http\Method;
 use Yiisoft\Router\Group;
 use Yiisoft\Router\Route;
+use Yiisoft\Yii\RateLimiter\Counter;
+use Yiisoft\Yii\RateLimiter\LimitRequestsMiddleware;
+use Yiisoft\Yii\RateLimiter\Storage\StorageInterface;
 
 return [
     Route::methods([Method::GET, Method::POST], '/login')
         ->name('auth/login')
+        ->middleware(LimitRequestsMiddleware::class)
         ->action([AuthController::class, 'login']),
 
     Route::post('/logout')
@@ -28,6 +33,10 @@ return [
 
     Route::methods([Method::GET, Method::POST], '/signup')
         ->name('auth/signup')
+        ->middleware(fn(
+            ResponseFactoryInterface $responseFactory,
+            StorageInterface $storage
+        ) => new LimitRequestsMiddleware(new Counter($storage, 5, 5), $responseFactory))
         ->action([SignupController::class, 'signup']),
 
     // Identity routes

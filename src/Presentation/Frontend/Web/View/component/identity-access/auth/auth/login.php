@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Yiisoft\Form\FormModelInterface;
-use Yiisoft\Form\Widget\Field;
-use Yiisoft\Form\Widget\Form;
+use Yiisoft\Form\Field;
+use Yiisoft\Html\Tag\Form;
 use Yiisoft\Html\Html;
 
 /**
@@ -28,28 +28,25 @@ $error = $error ?? null;
                     <h1 class="fw-normal h3 text-center"><?= Html::encode($this->getTitle()) ?></h1>
                 </div>
                 <div class="card-body p-5 text-center">
-                    <?= Form::widget()
-                        ->action($url->generate('auth/login'))
+                    <?= Form::tag()
+                        ->post($url->generate('auth/login'))
                         ->csrf($csrf)
                         ->id('loginForm')
-                        ->begin() ?>
+                        ->open() ?>
 
-                        <?= Field::widget()->text($formModel, 'login')->autofocus() ?>
-                        <?= Field::widget()->password($formModel, 'password') ?>
-                        <?= Field::widget()
-                            ->checkbox($formModel, 'rememberMe')
+                        <?= Field::text($formModel, 'login')->autofocus() ?>
+                        <?= Field::password($formModel, 'password') ?>
+                        <?= Field::checkbox($formModel, 'rememberMe')
                             ->containerClass('form-check form-switch text-start mt-2')
                             ->inputClass('form-check-input')
-                            ->labelClass('form-check-label')
+                            ->inputLabelClass('form-check-label')
                         ?>
-                        <?= Field::widget()
-                            ->id('login-button')
+                        <?= Field::submitButton($translator->translate('button.submit'))
+                            ->buttonId('login-button')
                             ->name('login-button')
-                            ->submitButton()
-                            ->value($translator->translate('button.submit'))
                         ?>
 
-                    <?= Form::end() ?>
+                    <?= Form::tag()->close() ?>
                 </div>
             </div>
         </div>

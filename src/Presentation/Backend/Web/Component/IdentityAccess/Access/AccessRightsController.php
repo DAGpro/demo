@@ -12,27 +12,22 @@ use Yiisoft\Yii\View\ViewRenderer;
 
 final class AccessRightsController
 {
-    private ViewRenderer $viewRenderer;
-    private WebControllerService $webService;
-    private AccessRightsServiceInterface $accessRightsService;
 
     public function __construct(
-        ViewRenderer $viewRenderer,
-        WebControllerService $webService,
-        AccessRightsServiceInterface $accessRightsService
+        private WebControllerService $webService,
+        private AccessRightsServiceInterface $accessRightsService,
+        private ViewRenderer $view,
     ) {
-        $this->webService = $webService;
-        $this->accessRightsService = $accessRightsService;
-        $viewRenderer = $viewRenderer->withLayout('@backendLayout/main');
-        $viewRenderer = $viewRenderer->withViewPath('@backendView/component/identity-access/access');
-        $this->viewRenderer = $viewRenderer->withControllerName('access-rights');
+        $view = $view->withLayout('@backendLayout/main');
+        $view = $view->withViewPath('@backendView/component/identity-access/access');
+        $this->view = $view->withControllerName('access-rights');
     }
 
     public function index(): ResponseInterface
     {
         $rolesWithChildren = $this->accessRightsService->getRoles();
 
-        return $this->viewRenderer->render('index', [
+        return $this->view->render('index', [
             'roles' => $rolesWithChildren,
             'currentUrl' => 'roles',
         ]);
@@ -42,7 +37,7 @@ final class AccessRightsController
     {
         $permissions = $this->accessRightsService->getPermissions();
 
-        return $this->viewRenderer->render('permissions-list', [
+        return $this->view->render('permissions-list', [
             'permissions' => $permissions,
             'currentUrl' => 'permissions',
         ]);
@@ -65,7 +60,7 @@ final class AccessRightsController
             return $this->webService->notFound();
         }
 
-        return $this->viewRenderer->render('view-role', [
+        return $this->view->render('view-role', [
             'role' => $role,
             'currentUrl' => null,
         ]);

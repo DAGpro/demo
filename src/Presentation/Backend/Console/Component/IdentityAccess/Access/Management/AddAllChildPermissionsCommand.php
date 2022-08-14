@@ -20,16 +20,11 @@ final class AddAllChildPermissionsCommand extends Command
 {
     protected static $defaultName = 'access/addAllChildPermissions';
 
-    private AccessManagementServiceInterface $accessManagementService;
-    private AccessRightsServiceInterface $accessRightsService;
-
     public function __construct(
-        AccessRightsServiceInterface $accessRightsService,
-        AccessManagementServiceInterface $managementService
+        private AccessRightsServiceInterface $accessRightsService,
+        private AccessManagementServiceInterface $accessManagementService
     ) {
-        $this->accessManagementService = $managementService;
         parent::__construct();
-        $this->accessRightsService = $accessRightsService;
     }
 
     public function configure(): void

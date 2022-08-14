@@ -20,15 +20,10 @@ final class RevokePermissionCommand extends Command
 {
     protected static $defaultName = 'assign/revokePermission';
 
-    private AssignAccessServiceInterface $assigningService;
-    private UserQueryServiceInterface $userQueryService;
-
     public function __construct(
-        AssignAccessServiceInterface $assignAccessService,
-        UserQueryServiceInterface $userQueryService
+        private AssignAccessServiceInterface $assigningService,
+        private UserQueryServiceInterface $userQueryService
     ) {
-        $this->assigningService = $assignAccessService;
-        $this->userQueryService = $userQueryService;
         parent::__construct();
     }
 

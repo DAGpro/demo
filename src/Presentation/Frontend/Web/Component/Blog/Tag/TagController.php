@@ -16,15 +16,11 @@ final class TagController
 {
     private const POSTS_PER_PAGE = 5;
 
-    private ViewRenderer $view;
-    private WebControllerService $webService;
-
     public function __construct(
-        ViewRenderer $viewRenderer,
-        WebControllerService $webControllerService
+        private WebControllerService $webService,
+        private ViewRenderer $view,
     ) {
-        $this->view = $viewRenderer->withControllerName('component/blog/tag');
-        $this->webService = $webControllerService;
+        $this->view = $view->withControllerName('component/blog/tag');
     }
 
     public function index(

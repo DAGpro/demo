@@ -19,20 +19,15 @@ use Yiisoft\Yii\View\ViewRenderer;
 
 final class CreateUserController
 {
-    private ViewRenderer $viewRenderer;
-    private WebControllerService $webService;
-    private UserServiceInterface $userService;
 
     public function __construct(
-        ViewRenderer $viewRenderer,
-        WebControllerService $webService,
-        UserServiceInterface $userService
+        private WebControllerService $webService,
+        private UserServiceInterface $userService,
+        private ViewRenderer $view,
     ) {
-        $viewRenderer = $viewRenderer->withLayout('@backendLayout/main');
-        $viewRenderer = $viewRenderer->withViewPath('@backendView/component/identity-access/user');
-        $this->viewRenderer = $viewRenderer->withControllerName('create-user');
-        $this->webService = $webService;
-        $this->userService = $userService;
+        $view = $view->withLayout('@backendLayout/main');
+        $view = $view->withViewPath('@backendView/component/identity-access/user');
+        $this->view = $view->withControllerName('create-user');
     }
 
     public function create(
@@ -53,7 +48,7 @@ final class CreateUserController
                 return $this->webService->redirect('backend/user');
             }
 
-            return $this->viewRenderer->render(
+            return $this->view->render(
                 'create',
                 [
                     'form' => $form,

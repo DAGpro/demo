@@ -23,21 +23,13 @@ final class AuthorPostController
 {
     private const POSTS_PER_PAGE = 4;
 
-    private ViewRenderer $view;
-    private WebControllerService $webService;
-    private AuthorPostServiceInterface $postService;
-    private IdentityAccessService $identityAccessService;
-
     public function __construct(
-        ViewRenderer $viewRenderer,
-        WebControllerService $webService,
-        AuthorPostServiceInterface $postService,
-        IdentityAccessService $identityAccessService
+        private WebControllerService $webService,
+        private AuthorPostServiceInterface $postService,
+        private IdentityAccessService  $identityAccessService,
+        private ViewRenderer $view,
     ) {
-        $this->view = $viewRenderer->withControllerName('component/blog/author');
-        $this->webService = $webService;
-        $this->postService = $postService;
-        $this->identityAccessService = $identityAccessService;
+        $this->view = $view->withControllerName('component/blog/author');
     }
 
     public function authorPosts(

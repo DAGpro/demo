@@ -19,11 +19,8 @@ final class RemovePermissionCommand extends Command
 {
     protected static $defaultName = 'access/removePermission';
 
-    private AccessManagementServiceInterface $accessManagementService;
-
-    public function __construct(AccessManagementServiceInterface $managementService)
+    public function __construct(private AccessManagementServiceInterface $accessManagementService)
     {
-        $this->accessManagementService = $managementService;
         parent::__construct();
     }
 

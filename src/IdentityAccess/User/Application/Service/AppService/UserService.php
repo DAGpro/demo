@@ -11,12 +11,10 @@ use App\IdentityAccess\User\Domain\User;
 
 final class UserService implements UserServiceInterface
 {
-    private UserRepositoryInterface $repository;
 
     public function __construct(
-        UserRepositoryInterface $repository,
+        private UserRepositoryInterface $repository,
     ) {
-        $this->repository = $repository;
     }
 
     /**

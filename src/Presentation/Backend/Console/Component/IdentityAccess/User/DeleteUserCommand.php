@@ -18,15 +18,10 @@ final class DeleteUserCommand extends Command
 {
     protected static $defaultName = 'user/delete';
 
-    private UserServiceInterface $userService;
-    private UserQueryServiceInterface $userQueryService;
-
     public function __construct(
-        UserServiceInterface $userService,
-        UserQueryServiceInterface $userQueryService
+        private UserServiceInterface $userService,
+        private UserQueryServiceInterface $userQueryService
     ) {
-        $this->userService = $userService;
-        $this->userQueryService = $userQueryService;
         parent::__construct();
     }
 

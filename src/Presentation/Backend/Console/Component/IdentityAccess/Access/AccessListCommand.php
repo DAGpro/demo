@@ -17,11 +17,8 @@ final class AccessListCommand extends Command
 {
     protected static $defaultName = 'access/list';
 
-    private AccessRightsServiceInterface $accessRightsService;
-
-    public function __construct(AccessRightsServiceInterface $managementService)
+    public function __construct(private AccessRightsServiceInterface $accessRightsService)
     {
-        $this->accessRightsService = $managementService;
         parent::__construct();
     }
 

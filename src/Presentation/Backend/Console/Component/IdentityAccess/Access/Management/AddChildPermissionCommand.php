@@ -20,11 +20,9 @@ final class AddChildPermissionCommand extends Command
 {
     protected static $defaultName = 'access/addChildPermission';
 
-    private AccessManagementServiceInterface $accessManagementService;
-
-    public function __construct(AccessManagementServiceInterface $managementService)
-    {
-        $this->accessManagementService = $managementService;
+    public function __construct(
+        private AccessManagementServiceInterface $accessManagementService
+    ) {
         parent::__construct();
     }
 

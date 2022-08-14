@@ -12,11 +12,11 @@ use Yiisoft\Auth\IdentityRepositoryInterface;
 
 final class IdentityRepository extends Select\Repository implements IdentityRepositoryInterface
 {
-    private EntityManager $entityManager;
 
-    public function __construct(Select $select, EntityManager $entityWriter)
-    {
-        $this->entityManager = $entityWriter;
+    public function __construct(
+        Select $select,
+        private EntityManager $entityManager
+    ) {
         parent::__construct($select);
     }
 

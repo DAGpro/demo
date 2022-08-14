@@ -19,21 +19,14 @@ use Yiisoft\Yii\View\ViewRenderer;
 
 final class CommentController
 {
-    private ViewRenderer $view;
-    private WebControllerService $webService;
-    private IdentityAccessService $identityAccessService;
-    private ReadPostQueryService $postQueryService;
 
     public function __construct(
-        ViewRenderer $viewRenderer,
-        WebControllerService $webService,
-        ReadPostQueryService $postQueryService,
-        IdentityAccessService $identityAccessService
+        private WebControllerService $webService,
+        private ReadPostQueryService $postQueryService,
+        private IdentityAccessService $identityAccessService,
+        private ViewRenderer $view
     ) {
-        $this->view = $viewRenderer->withControllerName('component/blog/comment');
-        $this->webService = $webService;
-        $this->identityAccessService = $identityAccessService;
-        $this->postQueryService = $postQueryService;
+        $this->view = $view->withControllerName('component/blog/comment');
     }
 
     public function index(

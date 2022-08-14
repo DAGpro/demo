@@ -9,11 +9,10 @@ use Yiisoft\Yii\View\ViewRenderer;
 
 final class SiteController
 {
-    private ViewRenderer $viewRenderer;
 
-    public function __construct(ViewRenderer $viewRenderer)
+    public function __construct(private ViewRenderer $view)
     {
-        $this->viewRenderer = $viewRenderer
+        $this->view = $view
             ->withController($this)
             ->withLayout('@backendLayout/main')
             ->withViewPath('@backendView/controller');
@@ -21,6 +20,6 @@ final class SiteController
 
     public function index(): ResponseInterface
     {
-        return $this->viewRenderer->render('index');
+        return $this->view->render('index');
     }
 }

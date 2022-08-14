@@ -16,15 +16,11 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 final class AccessManagementController
 {
-    private WebControllerService $webService;
-    private AccessManagementServiceInterface $accessManagementService;
 
     public function __construct(
-        AccessManagementServiceInterface $accessManagementService,
-        WebControllerService $webService
+        private AccessManagementServiceInterface $accessManagementService,
+        private WebControllerService $webService
     ) {
-        $this->webService = $webService;
-        $this->accessManagementService = $accessManagementService;
     }
 
     public function addRole(Request $request): ResponseInterface

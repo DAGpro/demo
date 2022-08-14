@@ -25,21 +25,12 @@ final class AssignRoleCommand extends Command
 {
     protected static $defaultName = 'assign/assignRole';
 
-    private AssignAccessServiceInterface $assignAccessService;
-    private AccessManagementServiceInterface $accessManagementService;
-    private AccessRightsServiceInterface $accessRightsService;
-    private UserQueryServiceInterface $userQueryService;
-
     public function __construct(
-        AssignAccessServiceInterface $assignAccessService,
-        AccessManagementServiceInterface $managementService,
-        AccessRightsServiceInterface $accessRightsService,
-        UserQueryServiceInterface $userQueryService
+        private AssignAccessServiceInterface $assignAccessService,
+        private AccessManagementServiceInterface $accessManagementService,
+        private AccessRightsServiceInterface $accessRightsService,
+        private UserQueryServiceInterface $userQueryService,
     ) {
-        $this->assignAccessService = $assignAccessService;
-        $this->accessManagementService = $managementService;
-        $this->accessRightsService = $accessRightsService;
-        $this->userQueryService = $userQueryService;
         parent::__construct();
     }
 

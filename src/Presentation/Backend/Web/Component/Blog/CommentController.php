@@ -21,23 +21,15 @@ final class CommentController
 {
     private const COMMENT_PER_PAGE = 3;
 
-    private ModerateCommentQueryServiceInterface $commentQueryService;
-    private ModerateCommentServiceInterface $commentService;
-    private ViewRenderer $view;
-    private WebControllerService $webService;
-
     public function __construct(
-        ModerateCommentQueryServiceInterface $commentQueryService,
-        ModerateCommentServiceInterface $commentService,
-        ViewRenderer $viewRenderer,
-        WebControllerService $webService
+        private ModerateCommentQueryServiceInterface $commentQueryService,
+        private ModerateCommentServiceInterface $commentService,
+        private WebControllerService $webService,
+        private ViewRenderer $view,
     ) {
-        $this->commentQueryService = $commentQueryService;
-        $this->commentService = $commentService;
-        $this->webService = $webService;
-        $viewRenderer = $viewRenderer->withLayout('@backendLayout/main');
-        $viewRenderer = $viewRenderer->withViewPath('@backendView/component/blog');
-        $this->view = $viewRenderer->withControllerName('comment');
+        $view = $view->withLayout('@backendLayout/main');
+        $view = $view->withViewPath('@backendView/component/blog');
+        $this->view = $view->withControllerName('comment');
     }
 
     public function index(CurrentRoute $currentRoute): ResponseInterface

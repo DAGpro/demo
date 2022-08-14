@@ -18,11 +18,8 @@ final class AssignmentsListCommand extends Command
 {
     protected static $defaultName = 'access/assignmentsList';
 
-    private AssignmentsServiceInterface $assignmentsService;
-
-    public function __construct(AssignmentsServiceInterface $assignmentsService)
+    public function __construct(private AssignmentsServiceInterface $assignmentsService)
     {
-        $this->assignmentsService = $assignmentsService;
         parent::__construct();
     }
 

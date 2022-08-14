@@ -21,23 +21,15 @@ final class TagController
 {
     private const POSTS_PER_PAGE = 3;
 
-    private TagQueryServiceInterface $tagQueryService;
-    private TagServiceInterface $tagService;
-    private ViewRenderer $view;
-    private WebControllerService $webService;
-
     public function __construct(
-        TagQueryServiceInterface $tagQueryService,
-        TagServiceInterface $tagService,
-        ViewRenderer $viewRenderer,
-        WebControllerService $webService
+        private TagQueryServiceInterface $tagQueryService,
+        private TagServiceInterface $tagService,
+        private WebControllerService $webService,
+        private ViewRenderer $view,
     ) {
-        $this->tagQueryService = $tagQueryService;
-        $this->tagService = $tagService;
-        $this->webService = $webService;
-        $viewRenderer = $viewRenderer->withLayout('@backendLayout/main');
-        $viewRenderer = $viewRenderer->withViewPath('@backendView/component/blog');
-        $this->view = $viewRenderer->withControllerName('tag');
+        $view = $view->withLayout('@backendLayout/main');
+        $view = $view->withViewPath('@backendView/component/blog');
+        $this->view = $view->withControllerName('tag');
     }
 
     public function index(CurrentRoute $currentRoute): ResponseInterface

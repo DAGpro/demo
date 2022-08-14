@@ -13,11 +13,9 @@ use Yiisoft\Yii\Cycle\Data\Reader\EntityReader;
 
 final class ModeratePostQueryService implements ModeratePostQueryServiceInterface
 {
-    private PostRepositoryInterface $repository;
 
-    public function __construct(PostRepositoryInterface $repository)
+    public function __construct(private PostRepositoryInterface $repository)
     {
-        $this->repository = $repository;
     }
 
     /**

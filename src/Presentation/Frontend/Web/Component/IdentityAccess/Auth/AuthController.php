@@ -20,18 +20,12 @@ use Yiisoft\Yii\View\ViewRenderer;
 
 final class AuthController
 {
-    private WebControllerService $webService;
-    private ViewRenderer $viewRenderer;
-    private AuthenticationService $authService;
-
     public function __construct(
-        ViewRenderer $viewRenderer,
-        AuthenticationService $authService,
-        WebControllerService $webService
+        private ViewRenderer $view,
+        private AuthenticationService $authService,
+        private WebControllerService $webService
     ) {
-        $this->viewRenderer = $viewRenderer->withControllerName('component/identity-access/auth/auth');
-        $this->authService = $authService;
-        $this->webService = $webService;
+        $this->view = $view->withControllerName('component/identity-access/auth/auth');
     }
 
     public function login(
@@ -68,7 +62,7 @@ final class AuthController
 
         }
 
-        return $this->viewRenderer->render('login', ['formModel' => $loginForm]);
+        return $this->view->render('login', ['formModel' => $loginForm]);
     }
 
     public function logout(): ResponseInterface

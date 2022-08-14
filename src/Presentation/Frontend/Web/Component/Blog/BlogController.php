@@ -19,11 +19,9 @@ final class BlogController
     private const POPULAR_TAGS_COUNT = 10;
     private const ARCHIVE_MONTHS_COUNT = 12;
 
-    private ViewRenderer $view;
-
-    public function __construct(ViewRenderer $viewRenderer)
+    public function __construct(private ViewRenderer $view)
     {
-        $this->view = $viewRenderer->withControllerName('component/blog');
+        $this->view = $view->withControllerName('component/blog');
     }
 
     public function index(

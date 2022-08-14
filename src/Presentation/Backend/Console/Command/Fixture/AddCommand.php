@@ -32,7 +32,6 @@ final class AddCommand extends Command
 {
     protected static $defaultName = 'fixture/add';
 
-    private CycleDependencyProxy $promise;
     private Generator $faker;
     /** @var User[] */
     private iterable $users = [];
@@ -40,25 +39,16 @@ final class AddCommand extends Command
     private array $tags = [];
     /** @var Author[] */
     private iterable $authors;
-    private AssignAccessServiceInterface $assignAccessService;
-    private AccessRightsServiceInterface $accessRightsService;
 
     private const DEFAULT_COUNT = 10;
-    private UserServiceInterface $userService;
-    private DatabaseManager $databaseManager;
 
     public function __construct(
-        CycleDependencyProxy $promise,
-        AccessRightsServiceInterface $accessRightsService,
-        AssignAccessServiceInterface $assignAccessService,
-        UserServiceInterface $userService,
-        DatabaseManager $databaseManager,
+        private CycleDependencyProxy $promise,
+        private AccessRightsServiceInterface $accessRightsService,
+        private AssignAccessServiceInterface $assignAccessService,
+        private UserServiceInterface $userService,
+        private DatabaseManager $databaseManager,
     ) {
-        $this->promise = $promise;
-        $this->assignAccessService = $assignAccessService;
-        $this->accessRightsService = $accessRightsService;
-        $this->userService = $userService;
-        $this->databaseManager = $databaseManager;
         parent::__construct();
     }
 

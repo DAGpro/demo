@@ -22,23 +22,15 @@ final class PostController
 {
     private const POSTS_PER_PAGE = 3;
 
-    private ModeratePostQueryServiceInterface $postQueryService;
-    private ModeratePostServiceInterface $postService;
-    private ViewRenderer $view;
-    private WebControllerService $webService;
-
     public function __construct(
-        ModeratePostQueryServiceInterface $postQueryService,
-        ModeratePostServiceInterface $postService,
-        ViewRenderer $viewRenderer,
-        WebControllerService $webService
+        private ModeratePostQueryServiceInterface $postQueryService,
+        private ModeratePostServiceInterface $postService,
+        private ViewRenderer $view,
+        private WebControllerService $webService
     ) {
-        $this->postQueryService = $postQueryService;
-        $this->postService = $postService;
-        $this->webService = $webService;
-        $viewRenderer = $viewRenderer->withLayout('@backendLayout/main');
-        $viewRenderer = $viewRenderer->withViewPath('@backendView/component/blog');
-        $this->view = $viewRenderer->withControllerName('post');
+        $view = $view->withLayout('@backendLayout/main');
+        $view = $view->withViewPath('@backendView/component/blog');
+        $this->view = $view->withControllerName('post');
     }
 
     public function index(CurrentRoute $currentRoute): ResponseInterface

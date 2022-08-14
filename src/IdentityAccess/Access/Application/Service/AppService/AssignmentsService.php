@@ -18,21 +18,12 @@ use Yiisoft\Rbac\Manager;
 final class AssignmentsService implements AssignmentsServiceInterface
 {
 
-    private AssignmentsStorageInterface $assignmentsStorage;
-    private AccessRightsServiceInterface $accessRightsService;
-    private Manager $manager;
-    private UserQueryServiceInterface $userQueryService;
-
     public function __construct(
-        AssignmentsStorageInterface $assignmentsStorage,
-        AccessRightsServiceInterface $accessRightsService,
-        UserQueryServiceInterface $userQueryService,
-        Manager $manager
+        private AssignmentsStorageInterface $assignmentsStorage,
+        private AccessRightsServiceInterface $accessRightsService,
+        private UserQueryServiceInterface $userQueryService,
+        private Manager $manager
     ) {
-        $this->assignmentsStorage = $assignmentsStorage;
-        $this->accessRightsService = $accessRightsService;
-        $this->userQueryService = $userQueryService;
-        $this->manager = $manager;
     }
 
 

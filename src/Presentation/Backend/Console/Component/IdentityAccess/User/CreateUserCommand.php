@@ -20,23 +20,15 @@ use Yiisoft\Yii\Console\ExitCode;
 
 final class CreateUserCommand extends Command
 {
-    private AssignAccessServiceInterface $assignAccessService;
-    private AccessRightsServiceInterface $accessRightsService;
-    private UserServiceInterface $userService;
-    private UserQueryServiceInterface $userQueryService;
 
     protected static $defaultName = 'user/create';
 
     public function __construct(
-        AssignAccessServiceInterface $assignAccessService,
-        AccessRightsServiceInterface $rolesStorage,
-        UserServiceInterface $userService,
-        UserQueryServiceInterface $userQueryService
+        private AssignAccessServiceInterface $assignAccessService,
+        private AccessRightsServiceInterface $accessRightsService,
+        private UserServiceInterface $userService,
+        private UserQueryServiceInterface $userQueryService
     ) {
-        $this->assignAccessService = $assignAccessService;
-        $this->accessRightsService = $rolesStorage;
-        $this->userService = $userService;
-        $this->userQueryService = $userQueryService;
         parent::__construct();
     }
 

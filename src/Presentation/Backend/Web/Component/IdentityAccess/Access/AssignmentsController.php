@@ -15,30 +15,22 @@ use Yiisoft\Yii\View\ViewRenderer;
 
 final class AssignmentsController
 {
-    private ViewRenderer $viewRenderer;
-    private WebControllerService $webService;
-    private AssignmentsServiceInterface $assignmentsService;
-    private UserQueryServiceInterface $userQueryService;
-
     public function __construct(
-        ViewRenderer $viewRenderer,
-        WebControllerService $webService,
-        UserQueryServiceInterface $userQueryService,
-        AssignmentsServiceInterface $assignmentsService,
+        private WebControllerService $webService,
+        private UserQueryServiceInterface $userQueryService,
+        private AssignmentsServiceInterface $assignmentsService,
+        private ViewRenderer $view,
     ) {
-        $this->webService = $webService;
-        $this->assignmentsService = $assignmentsService;
-        $this->userQueryService = $userQueryService;
-        $viewRenderer = $viewRenderer->withLayout('@backendLayout/main');
-        $viewRenderer = $viewRenderer->withViewPath('@backendView/component/identity-access/access');
-        $this->viewRenderer = $viewRenderer->withControllerName('assignments');
+        $view = $view->withLayout('@backendLayout/main');
+        $view = $view->withViewPath('@backendView/component/identity-access/access');
+        $this->view = $view->withControllerName('assignments');
     }
 
     public function assignments(): ResponseInterface
     {
         $usersAssignments = $this->assignmentsService->getAssignments();
 
-        return $this->viewRenderer->render('assignments', [
+        return $this->view->render('assignments', [
             'users' => $usersAssignments,
             'currentUrl' => 'assignments'
         ]);
@@ -64,7 +56,7 @@ final class AssignmentsController
 
             $userWithAssignments = $this->assignmentsService->getUserAssignments($user);
 
-            return $this->viewRenderer->render('user-assignments', [
+            return $this->view->render('user-assignments', [
                 'user' => $userWithAssignments,
                 'currentUrl' => null,
             ]);

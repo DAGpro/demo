@@ -17,9 +17,9 @@ final class UserController
 {
     private const PAGINATION_INDEX = 5;
 
-    public function __construct(private ViewRenderer $viewRenderer)
+    public function __construct(private ViewRenderer $view)
     {
-        $this->viewRenderer = $viewRenderer->withControllerName('component/identity-access/user/user');
+        $this->view = $view->withControllerName('component/identity-access/user/user');
     }
 
     public function index(
@@ -40,7 +40,7 @@ final class UserController
         $paginator = (new OffsetPaginator($dataReader))
             ->withPageSize(self::PAGINATION_INDEX);
 
-        return $this->viewRenderer->render(
+        return $this->view->render(
             'index',
             [
                 'page' => $page,
@@ -61,6 +61,6 @@ final class UserController
             return $responseFactory->createResponse(404);
         }
 
-        return $this->viewRenderer->render('profile', ['item' => $item]);
+        return $this->view->render('profile', ['item' => $item]);
     }
 }

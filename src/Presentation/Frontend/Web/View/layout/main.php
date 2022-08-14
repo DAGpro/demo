@@ -117,6 +117,10 @@ $this->beginPage();
                                     'url' => $url->generateFromCurrent(['_language' => 'ru'], 'site/index'),
                                 ],
                                 [
+                                    'label' => $translator->translate('layout.language.slovak'),
+                                    'url' => $url->generateFromCurrent(['_language' => 'sk'], 'site/index'),
+                                ],
+                                [
                                     'label' => $translator->translate('layout.language.indonesian'),
                                     'url' => $url->generateFromCurrent(['_language' => 'id'], 'site/index'),
                                 ],

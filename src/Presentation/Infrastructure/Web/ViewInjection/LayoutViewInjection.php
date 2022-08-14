@@ -10,13 +10,11 @@ use Yiisoft\Yii\View\LayoutParametersInjectionInterface;
 
 final class LayoutViewInjection implements LayoutParametersInjectionInterface
 {
-    private AuthenticationService $authenticationService;
-    private AuthorizationService $authorizationService;
 
-    public function __construct(AuthenticationService $authenticationService, AuthorizationService $authorizationService)
-    {
-        $this->authenticationService = $authenticationService;
-        $this->authorizationService = $authorizationService;
+    public function __construct(
+        private AuthenticationService $authenticationService,
+        private AuthorizationService $authorizationService
+    ) {
     }
 
     public function getLayoutParameters(): array

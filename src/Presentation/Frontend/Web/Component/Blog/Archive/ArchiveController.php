@@ -17,11 +17,9 @@ final class ArchiveController
     private const POPULAR_TAGS_COUNT = 10;
     private const ARCHIVE_MONTHS_COUNT = 12;
 
-    private ViewRenderer $view;
-
-    public function __construct(ViewRenderer $viewRenderer)
+    public function __construct(private ViewRenderer $view)
     {
-        $this->view = $viewRenderer->withControllerName('component/blog/archive');
+        $this->view = $view->withControllerName('component/blog/archive');
     }
 
     public function index(ArchivePostQueryServiceInterface $archivePostQueryService): Response

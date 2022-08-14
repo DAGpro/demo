@@ -14,11 +14,9 @@ use Yiisoft\Yii\Cycle\Data\Reader\EntityReader;
 
 final class ArchivePostQueryService implements ArchivePostQueryServiceInterface
 {
-    private PostRepositoryInterface $repository;
 
-    public function __construct(PostRepositoryInterface $postRepository)
+    public function __construct(private PostRepositoryInterface $repository)
     {
-        $this->repository = $postRepository;
     }
 
     public function getFullArchive(?int $limit = null): DataReaderInterface

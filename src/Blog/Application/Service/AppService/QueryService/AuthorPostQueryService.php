@@ -17,11 +17,9 @@ use Yiisoft\Yii\Cycle\Data\Reader\EntityReader;
 
 final class AuthorPostQueryService implements AuthorPostQueryServiceInterface
 {
-    private PostRepositoryInterface $repository;
 
-    public function __construct(PostRepositoryInterface $postRepository)
+    public function __construct(private PostRepositoryInterface $repository)
     {
-        $this->repository = $postRepository;
     }
 
     /**

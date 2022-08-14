@@ -13,11 +13,9 @@ use Yiisoft\Yii\Cycle\Data\Reader\EntityReader;
 
 final class TagQueryService implements TagQueryServiceInterface
 {
-    private TagRepositoryInterface $tagRepository;
 
-    public function __construct(TagRepositoryInterface $tagRepository)
+    public function __construct(private TagRepositoryInterface $tagRepository)
     {
-        $this->tagRepository = $tagRepository;
     }
 
     public function findAllPreloaded(): DataReaderInterface

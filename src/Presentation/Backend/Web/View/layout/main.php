@@ -105,6 +105,14 @@ $this->beginPage();
                                     'label' => $translator->translate('layout.language.russian'),
                                     'url' => $url->generate($currentRouteName, array_merge($currentRoute->getArguments(), ['_language' => 'ru'])),
                                 ],
+                                [
+                                    'label' => $translator->translate('layout.language.slovak'),
+                                    'url' => $url->generateFromCurrent(['_language' => 'sk'], 'site/index'),
+                                ],
+                                [
+                                    'label' => $translator->translate('layout.language.indonesian'),
+                                    'url' => $url->generateFromCurrent(['_language' => 'id'], 'site/index'),
+                                ],
                             ]
                         ]
                     ]
@@ -120,6 +128,10 @@ $this->beginPage();
                                 [
                                     'label' => $translator->translate('layout.language.russian'),
                                     'url' => $url->generate($currentRouteName, array_merge($currentRoute->getArguments(), ['_language' => 'ru'])),
+                                ],
+                                [
+                                    'label' => $translator->translate('layout.language.slovak'),
+                                    'url' => $url->generateFromCurrent(['_language' => 'sk'], 'site/index'),
                                 ],
                                 [
                                     'label' => $translator->translate('layout.language.indonesian'),

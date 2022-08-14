@@ -19,11 +19,8 @@ final class AddChildRoleCommand extends Command
 {
     protected static $defaultName = 'access/addChildRole';
 
-    private AccessManagementServiceInterface $accessManagementService;
-
-    public function __construct(AccessManagementServiceInterface $managementService)
+    public function __construct(private AccessManagementServiceInterface $accessManagementService)
     {
-        $this->accessManagementService = $managementService;
         parent::__construct();
     }
 

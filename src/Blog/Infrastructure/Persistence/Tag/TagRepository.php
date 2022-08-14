@@ -19,11 +19,11 @@ use Yiisoft\Data\Reader\DataReaderInterface;
 final class TagRepository extends Repository implements TagRepositoryInterface
 {
     private EntityManager $entityManager;
-    private ORMInterface $orm;
 
-    public function __construct(Select $select, ORMInterface $orm)
-    {
-        $this->orm = $orm;
+    public function __construct(
+        Select $select,
+        private ORMInterface $orm
+    ) {
         $this->entityManager = new EntityManager($orm);
         parent::__construct($select);
     }
@@ -80,8 +80,11 @@ final class TagRepository extends Repository implements TagRepositoryInterface
             ->select()
             ->buildQuery()
             ->columns(['t.label', 'count(*) count'])
-            ->innerJoin('post', 'p')->on('p.id', 'postTag.post_id')->onWhere(['p.public' => true])
-            ->innerJoin('tag', 't')->on('t.id', 'postTag.tag_id')
+            ->innerJoin('post', 'p')
+            ->on('p.id', 'postTag.post_id')
+            ->onWhere(['p.public' => true])
+            ->innerJoin('tag', 't')
+            ->on('t.id', 'postTag.tag_id')
             ->groupBy('t.label, tag_id');
 
         /**

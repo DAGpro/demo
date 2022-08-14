@@ -20,16 +20,11 @@ final class RevokeRoleCommand extends Command
 {
     protected static $defaultName = 'assign/revokeRole';
 
-    private AssignAccessServiceInterface $assigningService;
-    private UserQueryServiceInterface $userQueryService;
-
     public function __construct(
-        AssignAccessServiceInterface $assignAccessService,
-        UserQueryServiceInterface $userQueryService
+        private AssignAccessServiceInterface $assigningService,
+        private UserQueryServiceInterface $userQueryService
     ) {
-        $this->assigningService = $assignAccessService;
         parent::__construct();
-        $this->userQueryService = $userQueryService;
     }
 
     public function configure(): void

@@ -10,11 +10,9 @@ use App\Blog\Domain\Port\TagRepositoryInterface;
 
 final class TagService implements TagServiceInterface
 {
-    private TagRepositoryInterface $repository;
 
-    public function __construct(TagRepositoryInterface $repository)
+    public function __construct(private TagRepositoryInterface $repository)
     {
-        $this->repository = $repository;
     }
 
     /**

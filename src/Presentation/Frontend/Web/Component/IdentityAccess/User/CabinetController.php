@@ -13,18 +13,13 @@ use Yiisoft\Yii\View\ViewRenderer;
 
 final class CabinetController
 {
-    private ViewRenderer $view;
-    private AuthenticationService $authenticationService;
-    private WebControllerService $webService;
 
     public function __construct(
-        ViewRenderer $viewRenderer,
-        WebControllerService $webControllerService,
-        AuthenticationService $authenticationService
+        private ViewRenderer $view,
+        private WebControllerService $webService,
+        private AuthenticationService $authenticationService
     ) {
-        $this->view = $viewRenderer->withControllerName('component/identity-access/user/cabinet');
-        $this->authenticationService = $authenticationService;
-        $this->webService = $webControllerService;
+        $this->view = $view->withControllerName('component/identity-access/user/cabinet');
     }
 
     public function index(): Response

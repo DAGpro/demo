@@ -19,11 +19,8 @@ final class RemoveChildPermissionCommand extends Command
 {
     protected static $defaultName = 'access/removeChildPermission';
 
-    private AccessManagementServiceInterface $managerRightsService;
-
-    public function __construct(AccessManagementServiceInterface $managementService)
+    public function __construct(private AccessManagementServiceInterface $accessManagementService)
     {
-        $this->managerRightsService = $managementService;
         parent::__construct();
     }
 
@@ -46,7 +43,7 @@ final class RemoveChildPermissionCommand extends Command
         try {
             $parentRoleDTO = new RoleDTO($parentRole);
             $childPermissionDTO = new PermissionDTO($childPermission);
-            $this->managerRightsService->removeChildPermission($parentRoleDTO, $childPermissionDTO);
+            $this->accessManagementService->removeChildPermission($parentRoleDTO, $childPermissionDTO);
 
             $io->success(
                 sprintf(

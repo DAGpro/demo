@@ -8,15 +8,12 @@ use App\IdentityAccess\User\Domain\User;
 
 final class UserAssignmentsDTO
 {
-    private User $user;
-    private array $roles;
-    private array $permissions;
 
-    public function __construct(User $user, array $roles = [], array $permissions = [])
-    {
-        $this->user = $user;
-        $this->roles = $roles;
-        $this->permissions = $permissions;
+    public function __construct(
+        private User $user,
+        private array $roles = [],
+        private array $permissions = []
+    ) {
     }
 
     public function getId(): string

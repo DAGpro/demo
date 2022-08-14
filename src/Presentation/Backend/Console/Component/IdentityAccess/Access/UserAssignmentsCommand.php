@@ -19,15 +19,10 @@ final class UserAssignmentsCommand extends Command
 {
     protected static $defaultName = 'access/userAssignments';
 
-    private AssignmentsServiceInterface $assignmentsService;
-    private UserQueryServiceInterface $userQueryService;
-
     public function __construct(
-        AssignmentsServiceInterface $assignmentsService,
-        UserQueryServiceInterface $userQueryService
+        private AssignmentsServiceInterface $assignmentsService,
+        private UserQueryServiceInterface $userQueryService
     ) {
-        $this->assignmentsService = $assignmentsService;
-        $this->userQueryService = $userQueryService;
         parent::__construct();
     }
 

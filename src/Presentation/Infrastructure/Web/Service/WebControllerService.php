@@ -13,18 +13,12 @@ use Yiisoft\Session\Flash\FlashInterface;
 
 final class WebControllerService
 {
-    private ResponseFactoryInterface $responseFactory;
-    private UrlGeneratorInterface $urlGenerator;
-    private FlashInterface $flash;
 
     public function __construct(
-        ResponseFactoryInterface $responseFactory,
-        FlashInterface $flash,
-        UrlGeneratorInterface $urlGenerator
+        private ResponseFactoryInterface $responseFactory,
+        private FlashInterface $flash,
+        private UrlGeneratorInterface $urlGenerator
     ) {
-        $this->responseFactory = $responseFactory;
-        $this->urlGenerator = $urlGenerator;
-        $this->flash = $flash;
     }
 
     public function redirect(string $url, array $urlArguments = []): ResponseInterface

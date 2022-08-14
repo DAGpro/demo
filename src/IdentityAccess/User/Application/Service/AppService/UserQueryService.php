@@ -12,11 +12,9 @@ use Yiisoft\Yii\Cycle\Data\Reader\EntityReader;
 
 final class UserQueryService implements UserQueryServiceInterface
 {
-    private UserRepositoryInterface $repository;
 
-    public function __construct(UserRepositoryInterface $repository)
+    public function __construct(private UserRepositoryInterface $repository)
     {
-        $this->repository = $repository;
     }
 
     public function findAllPreloaded(array $scope = [], array $orderBy = []): DataReaderInterface

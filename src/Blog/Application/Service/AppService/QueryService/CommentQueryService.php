@@ -16,11 +16,8 @@ final class CommentQueryService implements CommentQueryServiceInterface
 {
     private const COMMENTS_FEED_PER_PAGE = 10;
 
-    private CommentRepositoryInterface $repository;
-
-    public function __construct(CommentRepositoryInterface $repository)
+    public function __construct(private CommentRepositoryInterface $repository)
     {
-        $this->repository = $repository;
     }
 
     public function getFeedPaginator(): KeysetPaginator

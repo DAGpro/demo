@@ -10,6 +10,7 @@ return [
     'layout.language.english' => 'English',
     'layout.language.russian' => 'Русский',
     'layout.language.indonesian' => 'Indonesia',
+    'layout.language.slovak' => 'Slovak',
 
     'menu.comments-feed' => 'Umpan komentar',
     'menu.blog' => 'Blog',

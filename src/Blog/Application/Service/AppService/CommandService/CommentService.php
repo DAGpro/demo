@@ -13,18 +13,12 @@ use App\Blog\Domain\User\Commentator;
 
 final class CommentService implements CommentServiceInterface
 {
-    private CommentRepositoryInterface $repository;
-    private ReadPostQueryServiceInterface $postQueryService;
-    private CommentQueryServiceInterface $commentQueryService;
 
     public function __construct(
-        CommentRepositoryInterface $repository,
-        ReadPostQueryServiceInterface $postQueryService,
-        CommentQueryServiceInterface $commentQueryService
+        private CommentRepositoryInterface $repository,
+        private ReadPostQueryServiceInterface $postQueryService,
+        private CommentQueryServiceInterface $commentQueryService
     ) {
-        $this->repository = $repository;
-        $this->postQueryService = $postQueryService;
-        $this->commentQueryService = $commentQueryService;
     }
 
     /**

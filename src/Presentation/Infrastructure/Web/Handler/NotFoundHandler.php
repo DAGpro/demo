@@ -12,16 +12,15 @@ use Yiisoft\Yii\View\ViewRenderer;
 
 final class NotFoundHandler implements RequestHandlerInterface
 {
-    private ViewRenderer $viewRenderer;
 
-    public function __construct(ViewRenderer $viewRenderer)
+    public function __construct(private ViewRenderer $view)
     {
-        $this->viewRenderer = $viewRenderer->withControllerName('controller/site');
+        $this->view = $view->withControllerName('controller/site');
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        return $this->viewRenderer
+        return $this->view
             ->render('404')
             ->withStatus(Status::NOT_FOUND);
     }

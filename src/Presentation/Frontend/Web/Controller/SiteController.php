@@ -9,15 +9,14 @@ use Yiisoft\Yii\View\ViewRenderer;
 
 final class SiteController
 {
-    private ViewRenderer $viewRenderer;
 
-    public function __construct(ViewRenderer $viewRenderer)
+    public function __construct(private ViewRenderer $view)
     {
-        $this->viewRenderer = $viewRenderer->withControllerName('controller/site');
+        $this->view = $view->withControllerName('controller/site');
     }
 
     public function index(): ResponseInterface
     {
-        return $this->viewRenderer->render('index');
+        return $this->view->render('index');
     }
 }

@@ -19,21 +19,13 @@ use Yiisoft\Rbac\Role;
 
 final class AccessManagementService implements AccessManagementServiceInterface
 {
-    private Manager $manager;
-    private ItemsStorageInterface $storage;
-    private AccessRightsServiceInterface $accessRightsService;
-    private AssignmentsServiceInterface $assignmentsService;
 
     public function __construct(
-        Manager $manager,
-        ItemsStorageInterface $storage,
-        AccessRightsServiceInterface $accessRightsService,
-        AssignmentsServiceInterface $assignmentsService
+        private Manager $manager,
+        private ItemsStorageInterface $storage,
+        private AccessRightsServiceInterface $accessRightsService,
+        private AssignmentsServiceInterface $assignmentsService
     ) {
-        $this->manager = $manager;
-        $this->accessRightsService = $accessRightsService;
-        $this->storage = $storage;
-        $this->assignmentsService = $assignmentsService;
     }
 
     /**

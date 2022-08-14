@@ -19,13 +19,12 @@ use Yiisoft\Yii\View\ViewRenderer;
 
 final class SignupController
 {
-    private ViewRenderer $viewRenderer;
-    private WebControllerService $webService;
 
-    public function __construct(ViewRenderer $viewRenderer, WebControllerService $webService)
-    {
-        $this->viewRenderer = $viewRenderer->withControllerName('component/identity-access/auth/signup');
-        $this->webService = $webService;
+    public function __construct(
+        private WebControllerService $webService,
+        private ViewRenderer $view,
+    ) {
+        $this->view = $view->withControllerName('component/identity-access/auth/signup');
     }
 
     public function signup(
@@ -60,6 +59,6 @@ final class SignupController
             }
         }
 
-        return $this->viewRenderer->render('signup', ['formModel' => $signupForm]);
+        return $this->view->render('signup', ['formModel' => $signupForm]);
     }
 }

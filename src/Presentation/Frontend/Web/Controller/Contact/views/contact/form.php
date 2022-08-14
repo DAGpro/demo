@@ -39,7 +39,7 @@ $this->setTitle($translator->translate('menu.contact'));
                     <?= Field::text($form, 'name') ?>
                     <?= Field::email($form, 'email') ?>
                     <?= Field::text($form, 'subject') ?>
-                    <?= Field::textArea($form, 'body')->addInputAttributes(['style' => 'height: 100px']) ?>
+                    <?= Field::textarea($form, 'body')->addInputAttributes(['style' => 'height: 100px']) ?>
                     <?= Field::file($form, 'attachFiles[]')
                         ->containerClass('mb-3')
                         ->multiple()

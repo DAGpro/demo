@@ -16,17 +16,12 @@ final class LoginForm extends FormModel
     private string $login = '';
     private string $password = '';
     private bool $rememberMe = false;
-    private TranslatorInterface $translator;
-    private UserQueryServiceInterface $userService;
 
     public function __construct(
-        UserQueryServiceInterface $userService,
-        TranslatorInterface $translator
+        private UserQueryServiceInterface $userService,
+        private TranslatorInterface $translator
     ) {
         parent::__construct();
-
-        $this->translator = $translator;
-        $this->userService = $userService;
     }
 
     public function getLogin(): string

@@ -22,21 +22,12 @@ final class AssignAllPermissionsCommand extends Command
 {
     protected static $defaultName = 'assign/assignAllPermissions';
 
-    private AssignAccessServiceInterface $assignAccessService;
-    private AccessRightsServiceInterface $accessRightsService;
-    private UserQueryServiceInterface $userService;
-    private AssignmentsServiceInterface $assignmentsService;
-
     public function __construct(
-        AssignAccessServiceInterface $assignAccessService,
-        AccessRightsServiceInterface $accessRightsService,
-        AssignmentsServiceInterface $assignmentsService,
-        UserQueryServiceInterface $userService
+        private AssignAccessServiceInterface $assignAccessService,
+        private AccessRightsServiceInterface $accessRightsService,
+        private UserQueryServiceInterface $userService,
+        private AssignmentsServiceInterface $assignmentsService,
     ) {
-        $this->assignAccessService = $assignAccessService;
-        $this->accessRightsService = $accessRightsService;
-        $this->userService = $userService;
-        $this->assignmentsService = $assignmentsService;
         parent::__construct();
     }
 

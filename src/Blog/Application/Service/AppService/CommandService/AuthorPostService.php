@@ -16,18 +16,12 @@ use App\Blog\Domain\User\Author;
 
 final class AuthorPostService implements AuthorPostServiceInterface
 {
-    private PostRepositoryInterface $repository;
-    private TagRepositoryInterface $tagRepository;
-    private AuthorPostQueryServiceInterface $postQueryService;
 
     public function __construct(
-        PostRepositoryInterface $repository,
-        AuthorPostQueryServiceInterface $postQueryService,
-        TagRepositoryInterface  $tagRepository
+        private PostRepositoryInterface $repository,
+        private AuthorPostQueryServiceInterface $postQueryService,
+        private TagRepositoryInterface $tagRepository
     ) {
-        $this->repository = $repository;
-        $this->tagRepository = $tagRepository;
-        $this->postQueryService = $postQueryService;
     }
 
     public function create(PostCreateDTO $postCreateDTO, Author $author): void

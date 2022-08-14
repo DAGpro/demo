@@ -6,21 +6,13 @@ namespace App\IdentityAccess\Access\Application\Service;
 
 final class PermissionDTO
 {
-    private string $name;
-    private ?string $description;
-    private ?int $created_at;
-    private ?int $updated_at;
 
     public function __construct(
-        string $name,
-        ?string $description = null,
-        ?int $created_at = null,
-        ?int $updated_at = null
+        private string $name,
+        private ?string $description = null,
+        private ?int $created_at = null,
+        private ?int $updated_at = null
     ) {
-        $this->name = $name;
-        $this->description = $description;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
     }
 
     public function getName(): string

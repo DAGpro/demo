@@ -16,21 +16,13 @@ use Yiisoft\Yii\View\ViewRenderer;
 
 final class ContactController
 {
-    private ContactMailer $mailer;
-    private ResponseFactoryInterface $responseFactory;
-    private UrlGeneratorInterface $url;
-    private ViewRenderer $viewRenderer;
-
     public function __construct(
-        ContactMailer $mailer,
-        ResponseFactoryInterface $responseFactory,
-        UrlGeneratorInterface $url,
-        ViewRenderer $viewRenderer
+        private ContactMailer $mailer,
+        private ResponseFactoryInterface $responseFactory,
+        private UrlGeneratorInterface $url,
+        private ViewRenderer $view
     ) {
-        $this->mailer = $mailer;
-        $this->responseFactory = $responseFactory;
-        $this->url = $url;
-        $this->viewRenderer = $viewRenderer
+        $this->view = $view
             ->withControllerName('contact')
             ->withViewPath(__DIR__ . '/views');
     }
@@ -51,6 +43,6 @@ final class ContactController
                 ->withHeader(Header::LOCATION, $this->url->generate('site/contact'));
         }
 
-        return $this->viewRenderer->render('form', ['form' => $form]);
+        return $this->view->render('form', ['form' => $form]);
     }
 }

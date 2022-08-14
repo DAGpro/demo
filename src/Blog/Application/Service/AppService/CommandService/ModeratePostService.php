@@ -13,18 +13,12 @@ use App\Blog\Domain\Port\TagRepositoryInterface;
 
 final class ModeratePostService implements ModeratePostServiceInterface
 {
-    private PostRepositoryInterface $repository;
-    private TagRepositoryInterface $tagRepository;
-    private ModeratePostQueryServiceInterface $postQueryService;
 
     public function __construct(
-        ModeratePostQueryServiceInterface $postQueryService,
-        PostRepositoryInterface $repository,
-        TagRepositoryInterface  $tagRepository
+        private ModeratePostQueryServiceInterface $postQueryService,
+        private PostRepositoryInterface $repository,
+        private TagRepositoryInterface  $tagRepository
     ) {
-        $this->repository = $repository;
-        $this->tagRepository = $tagRepository;
-        $this->postQueryService = $postQueryService;
     }
 
     /**

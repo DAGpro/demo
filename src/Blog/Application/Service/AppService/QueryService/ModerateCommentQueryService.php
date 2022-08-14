@@ -14,11 +14,8 @@ use Yiisoft\Yii\Cycle\Data\Reader\EntityReader;
 final class ModerateCommentQueryService implements ModerateCommentQueryServiceInterface
 {
 
-    private CommentRepositoryInterface $repository;
-
-    public function __construct(CommentRepositoryInterface $repository)
+    public function __construct(private CommentRepositoryInterface $repository)
     {
-        $this->repository = $repository;
     }
 
     public function findAllPreloaded(): ?DataReaderInterface

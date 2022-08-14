@@ -18,15 +18,10 @@ final class CreateAccessRights extends Command
 {
     protected static $defaultName = 'fixture/addAccess';
 
-    private AccessManagementServiceInterface $accessManagementService;
-    private AccessRightsServiceInterface $accessRightsService;
-
     public function __construct(
-        AccessManagementServiceInterface $accessManagementService,
-        AccessRightsServiceInterface $accessRightsService
+        private AccessManagementServiceInterface $accessManagementService,
+        private AccessRightsServiceInterface $accessRightsService
     ) {
-        $this->accessManagementService = $accessManagementService;
-        $this->accessRightsService = $accessRightsService;
         parent::__construct();
     }
 

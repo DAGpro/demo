@@ -10,11 +10,8 @@ use Yiisoft\Yii\Bootstrap5\Alert;
 
 final class FlashMessage extends Widget
 {
-    private FlashInterface $flash;
-
-    public function __construct(FlashInterface $flash)
+    public function __construct(private FlashInterface $flash)
     {
-        $this->flash = $flash;
     }
 
     public function run(): string

@@ -14,15 +14,11 @@ use Yiisoft\Http\Method;
 
 final class DeleteUserController
 {
-    private WebControllerService $webService;
-    private UserServiceInterface $userService;
 
     public function __construct(
-        WebControllerService $webService,
-        UserServiceInterface $userService
+        private WebControllerService $webService,
+        private UserServiceInterface $userService
     ) {
-        $this->webService = $webService;
-        $this->userService = $userService;
     }
 
     public function remove(Request $request, LoggerInterface $logger): ?ResponseInterface

@@ -12,15 +12,10 @@ use App\Blog\Domain\Port\CommentRepositoryInterface;
 final class ModerateCommentService implements ModerateCommentServiceInterface
 {
 
-    private CommentRepositoryInterface $repository;
-    private ModerateCommentQueryServiceInterface $commentQueryService;
-
     public function __construct(
-        CommentRepositoryInterface $repository,
-        ModerateCommentQueryServiceInterface $commentQueryService
+        private CommentRepositoryInterface $repository,
+        private ModerateCommentQueryServiceInterface $commentQueryService
     ) {
-        $this->repository = $repository;
-        $this->commentQueryService = $commentQueryService;
     }
 
     /**

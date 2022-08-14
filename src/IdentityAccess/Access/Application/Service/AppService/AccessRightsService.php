@@ -12,15 +12,11 @@ use Yiisoft\Rbac\Manager;
 
 final class AccessRightsService implements AccessRightsServiceInterface
 {
-    private Manager $manager;
-    private ItemsStorageInterface $storage;
 
     public function __construct(
-        Manager $manager,
-        ItemsStorageInterface $storage
+        private Manager $manager,
+        private ItemsStorageInterface $storage
     ) {
-        $this->manager = $manager;
-        $this->storage = $storage;
     }
 
     public function existRole(string $roleName): bool

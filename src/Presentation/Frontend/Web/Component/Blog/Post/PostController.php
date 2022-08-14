@@ -14,18 +14,13 @@ use Yiisoft\Yii\View\ViewRenderer;
 
 final class PostController
 {
-    private ViewRenderer $view;
-    private WebControllerService $webService;
-    private IdentityAccessService $identityAccessService;
 
     public function __construct(
-        ViewRenderer $viewRenderer,
-        WebControllerService $webService,
-        IdentityAccessService $identityAccessService
+        private WebControllerService $webService,
+        private IdentityAccessService $identityAccessService,
+        private ViewRenderer $view
     ) {
-        $this->view = $viewRenderer->withControllerName('component/blog/post');
-        $this->webService = $webService;
-        $this->identityAccessService = $identityAccessService;
+        $this->view = $view->withControllerName('component/blog/post');
     }
 
     public function index(

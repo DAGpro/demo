@@ -16,20 +16,14 @@ final class UserController
 {
     private const PAGINATION_INDEX = 5;
 
-    private ViewRenderer $viewRenderer;
-    private WebControllerService $webService;
-    private UserQueryServiceInterface $userQueryService;
-
     public function __construct(
-        ViewRenderer $viewRenderer,
-        WebControllerService $webService,
-        UserQueryServiceInterface $userQueryService
+        private WebControllerService $webService,
+        private UserQueryServiceInterface $userQueryService,
+        private ViewRenderer $view,
     ) {
-        $viewRenderer = $viewRenderer->withLayout('@backendLayout/main');
-        $viewRenderer = $viewRenderer->withViewPath('@backendView/component/identity-access/user');
-        $this->viewRenderer = $viewRenderer->withControllerName('user');
-        $this->webService = $webService;
-        $this->userQueryService = $userQueryService;
+        $view = $view->withLayout('@backendLayout/main');
+        $view = $view->withViewPath('@backendView/component/identity-access/user');
+        $this->view = $view->withControllerName('user');
     }
 
     public function index(CurrentRoute $currentRoute): Response
@@ -45,7 +39,7 @@ final class UserController
             ->withPageSize(self::PAGINATION_INDEX)
             ->withCurrentPage($pageNum);
 
-        return $this->viewRenderer->render('index', ['paginator' => $paginator]);
+        return $this->view->render('index', ['paginator' => $paginator]);
     }
 
     public function profile(CurrentRoute $currentRoute): Response
@@ -65,6 +59,6 @@ final class UserController
             return $this->webService->notFound();
         }
 
-        return $this->viewRenderer->render('profile', ['item' => $item]);
+        return $this->view->render('profile', ['item' => $item]);
     }
 }

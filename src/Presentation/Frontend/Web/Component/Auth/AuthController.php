@@ -23,7 +23,7 @@ final class AuthController
         private WebControllerService $webService,
         private ViewRenderer $viewRenderer,
     ) {
-        $this->viewRenderer = $viewRenderer->withControllerName('auth');
+        $this->viewRenderer = $viewRenderer->withControllerName('component/auth');
     }
 
     public function login(

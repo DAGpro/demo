@@ -24,7 +24,7 @@ final class PostController
         private UserService $userService,
         private ViewRenderer $viewRenderer,
     ) {
-        $this->viewRenderer = $viewRenderer->withControllerName('blog/post');
+        $this->viewRenderer = $viewRenderer->withControllerName('component/blog/post');
     }
 
     public function index(CurrentRoute $currentRoute, PostRepository $postRepository): Response

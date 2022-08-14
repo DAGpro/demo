@@ -18,7 +18,7 @@ final class SignupController
 {
     public function __construct(private WebControllerService $webService, private ViewRenderer $viewRenderer)
     {
-        $this->viewRenderer = $viewRenderer->withControllerName('signup');
+        $this->viewRenderer = $viewRenderer->withControllerName('component/signup');
     }
 
     public function signup(

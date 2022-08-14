@@ -134,7 +134,7 @@ return [
             'user/create' => \App\Presentation\Backend\Console\Component\User\CreateCommand::class,
             'user/assignRole' => \App\Presentation\Backend\Console\Component\User\AssignRoleCommand::class,
             'fixture/add' => \App\Presentation\Backend\Console\Command\Fixture\AddCommand::class,
-            'fixture/schema/clear' => App\Command\Fixture\SchemaClearCommand::class,
+            'fixture/schema/clear' => \App\Presentation\Backend\Console\Command\Fixture\SchemaClearCommand::class,
             'router/list' => \App\Presentation\Backend\Console\Command\Router\ListCommand::class,
             'translator/translate' => \App\Presentation\Backend\Console\Command\Translation\TranslateCommand::class,
         ],
